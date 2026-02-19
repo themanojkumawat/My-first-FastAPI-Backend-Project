@@ -1,11 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# ✅ PostgreSQL URL
-DATABASE_URL = "postgresql://drivergo:drivergopass@127.0.0.1:5432/drivergo_db"
+from config import settings
 
-# ✅ engine
-engine = create_engine(DATABASE_URL)
+engine = create_engine(
+    settings.DATABASE_URL,
+    pool_pre_ping=True,
+)
 
 # ✅ session
 SessionLocal = sessionmaker(
